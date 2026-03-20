@@ -2,7 +2,7 @@
 
 Una aplicación web minimalista construida con **Vue 3** y **Tailwind CSS** que consume la [PokéAPI](https://pokeapi.co) para listar y buscar Pokémon de forma dinámica.
 
-![Vue 3](https://img.shields.io) ![JavaScript](https://img.shields.io) ![Tailwind CSS](https://img.shields.io) ![HTML5](https://img.shields.io) ![CSS3](https://img.shields.io) ![VS Code](https://img.shields.io) ![Netlify](https://img.shields.io)
+https://img.shields.io https://img.shields.io https://img.shields.io https://img.shields.io https://img.shields.io https://img.shields.io https://img.shields.io
 
 ---
 
