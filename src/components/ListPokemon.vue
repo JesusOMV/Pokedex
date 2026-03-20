@@ -1,73 +1,132 @@
 <template>
-  <div class="main-container">
-    <div v-if="loading" class="spinner-container">
-      <div class="pokeball">
-        <p>Catching Pokemons...</p>
+  <div class="bg-poke-green min-h-screen p-5 text-white">
+    <Transition name="screen-fade" mode="out-in">
+      <div
+        v-if="loading"
+        key="loading"
+        class="fixed inset-0 flex flex-col items-center justify-center z-[2000]"
+      >
+        <div class="pokeball"></div>
+        <p class="loading-text">Catching pokemons...</p>
       </div>
-    </div>
-    <div v-else-if="error">
-      <Error :error="error"/>
-    </div>
-    <div v-else>
-      <div class="list-pokemons-title">
-        <router-link to="/">
-          <button id="home-button">I want to return to the Home Page</button>
-        </router-link>
-        <h1>Official List of Pokemons</h1>
+      <div v-else-if="error" key="error">
+        <Error :error="error" />
       </div>
-      <div class="pokemon-grid">
-        <div
-          class="pokemon-card"
-          v-for="pokemon in pokemones"
-          :key="pokemon.idAll"
-        >
-          <div class="pokemon-image-container">
-            <img :src="pokemon.imageAll" alt="" />
-          </div>
-          <div class="pokemon-info">
-            <p class="pokemon-data">Name: {{ pokemon.nameAll }}</p>
-            <p class="pokemon-data">
-              Types
-              <ul v-for="t in pokemon.typesAll" :key="t.slot"><li>{{ t.type.name }}</li></ul>
-            </p>
-            <p class="pokemon-data">
-              Height: {{ pokemon.heightAll }} ft
-            </p>
-            <p class="pokemon-data">
-              Weight: {{ pokemon.weightAll }} lb
-            </p>
+      <div v-else key="list">
+        <div class="flex flex-col items-center">
+          <router-link to="/">
+            <button
+              class="bg-white/20 backdrop-blur-md border border-white/30 text-white px-5 py-2.5 rounded-full uppercase tracking-wide cursor-pointer transition hover:bg-white/30"
+            >
+              I want to return to the Home Page
+            </button>
+          </router-link>
+          <h1
+            class="font-pokedex text-center mb-[30px] text-4xl md:text-5xl py-2 font-black uppercase tracking-wider text-poke-yellow title-pokemon-list"
+          >
+            Official List of Pokemons
+          </h1>
+        </div>
+        <div class="pokemon-grid">
+          <div
+            class="pokemon-card-list"
+            v-for="pokemon in pokemones"
+            :key="pokemon.idAll"
+            @click="selectPokemon(pokemon)"
+          >
+            <div class="pokemon-image-container">
+              <img :src="pokemon.imageAll" alt="" />
+            </div>
           </div>
         </div>
+        <Teleport to="body">
+          <Transition name="modal-pop">
+            <div
+              v-if="selectedPokemon"
+              class="fixed inset-0 w-full h-full bg-black/50 flex justify-center items-center z-[1000]"
+              @click="closeCard"
+              role="dialog"
+              aria-modal="true"
+            >
+              <div
+                class="bg-gradient-to-b from-poke-red to-poke-red-dark font-poke-message card-content"
+                @click.stop
+              >
+                <button
+                  class="bg-black text-white border-none px-3 py-2 rounded-lg cursor-pointer mb-[10px] hover:bg-gray-800 transition-colors"
+                  @click="closeCard"
+                >
+                  Close
+                </button>
+                <div
+                  class="bg-white border-[4px] border-black rounded-[14px] p-3 w-[min(330px,85vw)] mx-auto flex justify-center items-center my-[10px]"
+                >
+                  <img
+                    class="block w-[180px] h-auto object-contain"
+                    :src="selectedPokemon.imageAll"
+                    :alt="selectedPokemon.nameAll"
+                  />
+                </div>
+
+                <h2 class="text-[36px] m-0 text-black capitalize">
+                  {{ selectedPokemon.nameAll }}
+                </h2>
+
+                <h2>Type(s):</h2>
+                <ul
+                  class="list-none p-0 my-[10px] flex flex-wrap justify-center gap-2"
+                >
+                  <li
+                    v-for="t in selectedPokemon.typesAll"
+                    :key="t.slot"
+                    class="bg-black/20 px-[10px] py-[6px] rounded-full capitalize list-none"
+                  >
+                    {{ t.type.name }}
+                  </li>
+                </ul>
+
+                <p class="my-[6px] text-black font-semibold">
+                  Height: {{ selectedPokemon.heightAll }} ft
+                </p>
+                <p class="my-[6px] text-black font-semibold">
+                  Weight: {{ selectedPokemon.weightAll }} lb
+                </p>
+              </div>
+            </div>
+          </Transition>
+        </Teleport>
+        <nav class="flex justify-center items-center gap-5 mt-5">
+          <button
+            class="nav-button bg-white/20 border-none text-white py-[10px] px-[15px] rounded-[25px] font-bold cursor-pointer transition duration-300"
+            @click="previousP"
+            :disabled="offset === 0 || loading"
+          >
+            Previous
+          </button>
+          <span
+            class="text-base font-bold text-white bg-white/10 px-4 py-2 rounded-xl border border-white/20 min-w-[100px] text-center shadow-[inset_0_0_10px_rgba(255,255,255,0.05)]"
+          >
+            {{ offset + 1 }} - {{ offset + pokemones.length }}
+          </span>
+          <button
+            class="nav-button nav-button bg-white/20 border-none text-white py-[10px] px-[15px] rounded-[25px] font-bold cursor-pointer transition duration-300"
+            @click="nextP"
+            :disabled="offset + limit >= totalPokemons || loading"
+          >
+            Next
+          </button>
+        </nav>
       </div>
-      <nav class="pages-container">
-        <button
-          class="nav-button"
-          @click="previousP"
-          :disabled="offset === 0 || loading"
-        >
-          Previous
-        </button>
-        <span id="page-indicator">
-          {{ offset + 1 }} - {{ offset + pokemones.length }}
-        </span>
-        <button
-          class="nav-button"
-          @click="nextP"
-          :disabled="offset + limit >= totalPokemons || loading"
-        >
-          Next
-        </button>
-      </nav>
-    </div>
+    </Transition>
   </div>
 </template>
 
 <script setup>
-import { onMounted } from 'vue'
+import { onMounted, ref } from 'vue'
 import { useApi } from '@/services/ConnectionAPI'
 import Error from './Error.vue'
 
-let {
+const {
   dataAll: pokemones,
   limit,
   offset,
@@ -76,6 +135,16 @@ let {
   loading,
   fetch,
 } = useApi()
+
+const selectedPokemon = ref(null)
+
+const selectPokemon = (pokemon) => {
+  selectedPokemon.value = pokemon
+}
+
+const closeCard = () => {
+  selectedPokemon.value = null
+}
 
 const nextP = () => {
   if (offset.value + limit.value < totalPokemons.value) {
@@ -95,130 +164,75 @@ onMounted(fetch)
 </script>
 
 <style scoped>
-.main-container {
-  background: linear-gradient(to bottom, #e3350d 0%, #b32300 100%);
-  min-height: 100vh;
-  padding: 20px;
-  color: white;
-  font-family: 'Segoe UI', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+.title-pokemon-list {
+  text-shadow:
+    -2px -2px 0 theme('colors.poke-blue'),
+    2px -2px 0 theme('colors.poke-blue'),
+    -2px 2px 0 theme('colors.poke-blue'),
+    2px 2px 0 theme('colors.poke-blue'),
+    0px 4px 5px rgba(0, 0, 0, 0.5);
 }
 
-.list-pokemons-title h1{
-  text-align: center;
-  margin-bottom: 30px;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-}
-
-#home-button{
-  background: rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  color: white;
-  padding: 10px 20px;
-  border-radius: 50px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  cursor: pointer;
-}
-
-.pokemon-grid{
+.pokemon-grid {
   display: grid;
-  grid-template-columns:repeat(auto-fill, minmax(220px, 1fr));
+  grid-template-columns: repeat(5, 1fr);
   gap: 25px;
   position: relative;
 }
 
-.pokemon-card{
+.pokemon-card-list {
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(8px);
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 15px;
   padding: 15px;
   text-align: center;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
   cursor: pointer;
 }
 
-.pokemon-card:hover{
+.pokemon-card-list:hover {
   transform: translateY(-8px);
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
   background: rgba(255, 255, 255, 0.2);
 }
 
-.pokemon-image-container img{
-  width: 120px;
-  height: 120px;
-  object-fit:contain;
+.pokemon-image-container img {
+  width: 100%;
+  height: auto;
   filter: drop-shadow(2px 4px 6px rgba(0, 0, 0, 0.5));
 }
 
-.pokemon-info{
-  margin-top: 15px;
-  padding-top: 10px;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+.card-content {
+  padding: 20px 15px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 4px;
+  gap: 12px;
+  width: fit-content;
+  max-width: 90vw;
 }
 
-.pokemon-data{
-  margin: 0;
-  font-weight: 600;
+.modal-types li {
+  background: rgba(0, 0, 0, 0.2);
+  padding: 6px 10px;
+  border-radius: 999px;
   text-transform: capitalize;
-  font-size: 1.2rem;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
-.pages-container{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 20px;
-  margin-top: 40px;
-}
-
-.nav-button{
-  background: rgba(255, 255, 255, 0.2);
-  border: none;
-  color: white;
-  padding: 10px 25px;
-  border-radius: 25px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background 0.3s;
-}
-
-.nav-button:hover:not(:disabled){
+.nav-button:hover:not(:disabled) {
   background: rgba(255, 255, 255, 0.3);
 }
 
-.nav-button:disabled{
-  background: #555;
+.nav-button:disabled {
+  background: theme('colors.poke-gray');
   cursor: not-allowed;
   opacity: 0.5;
-}
-
-#page-indicator{
-  font-size: 1rem;
-  font-weight: bold;
-  color: white;
-  background: rgba(255, 255, 255, 0.1);
-  padding: 8px 16px;
-  border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  min-width: 100px;
-  text-align: center;
-  box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.05);
-}
-
-.spinner-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 200px;
 }
 
 .pokeball {
@@ -229,11 +243,11 @@ onMounted(fetch)
   border-radius: 50%;
   position: relative;
   overflow: hidden;
-  animation: shake 1.25s cubic-bezier(.36, .07, .19, .97) infinite;
+  animation: shake 1.25s cubic-bezier(0.36, 0.07, 0.19, 0.97) infinite;
 }
 
-.pokeball::before{
-  content: "";
+.pokeball::before {
+  content: '';
   position: absolute;
   background-color: #f20202;
   width: 100%;
@@ -242,10 +256,10 @@ onMounted(fetch)
   border-bottom: 4px solid #333;
 }
 
-.pokeball::after{
-  content: "";
+.pokeball::after {
+  content: '';
   position: absolute;
-  background-color: #fff;
+  background-color: white;
   width: 15px;
   height: 15px;
   border: 4px solid #333;
@@ -256,16 +270,70 @@ onMounted(fetch)
   z-index: 10;
 }
 
-@keyframes shake {
-  0% { transform: rotate(0deg); }
-  20% { transform: rotate(-20deg); }
-  40% { transform: rotate(20deg); }
-  60% { transform: rotate(-20deg); }
-  80% { transform: rotate(20deg); }
-  100% { transform: rotate(0deg); }
+.loading-text {
+  margin-top: 20px;
+  text-align: center;
+  white-space: nowrap;
+  color: white;
+  font-weight: 700;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
 }
 
-buton:disabled {
+.screen-fade-enter-active,
+.screen-fade-leave-active {
+  transition: opacity 0.25s ease;
+}
+
+.screen-fade-enter-from,
+.screen-fade-leave-to {
+  opacity: 0;
+}
+
+.modal-pop-enter-active,
+.modal-pop-leave-active {
+  transition: opacity 0.2s ease;
+}
+
+.modal-pop-enter-active .card-content,
+.modal-pop-leave-active .card-content {
+  transition:
+    transform 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.modal-pop-enter-from,
+.modal-pop-leave-to {
+  opacity: 0;
+}
+
+.modal-pop-enter-from .card-content,
+.modal-pop-leave-to .card-content {
+  transform: translateY(10px) scale(0.97);
+  opacity: 0;
+}
+
+@keyframes shake {
+  0% {
+    transform: rotate(0deg);
+  }
+  20% {
+    transform: rotate(-20deg);
+  }
+  40% {
+    transform: rotate(20deg);
+  }
+  60% {
+    transform: rotate(-20deg);
+  }
+  80% {
+    transform: rotate(20deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+button:disabled {
   opacity: 0.5;
   cursor: not-allowed;
 }
