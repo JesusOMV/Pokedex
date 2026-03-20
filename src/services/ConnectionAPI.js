@@ -13,19 +13,24 @@ export const useApi = () => {
   let findPokemon = ref(null)
 
   const fetch = async () => {
+    const startedAt = Date.now()
     loading.value = true
     error.value = null
     try {
       let response = await api.get(
         `pokemon?limit=${limit.value}&offset=${offset.value}`,
       )
-      console.log(response)
       data.value = response.data.results
-      getAllPokemons(data)
+      await getAllPokemons(data)
       totalPokemons.value = response.data.count
     } catch (e) {
       error.value = 'Error al obtener datos'
     } finally {
+      const elapsed = Date.now() - startedAt
+      const remaining = 3000 - elapsed
+      if (remaining > 0) {
+        await new Promise((resolve) => setTimeout(resolve, remaining))
+      }
       loading.value = false
     }
   }
@@ -45,7 +50,6 @@ export const useApi = () => {
 
   const searchPokemon = async (searchQuery) => {
     if (!searchQuery) {
-      console.warn('No se proporciono un nombre de Pokemon')
       return
     }
 
@@ -53,6 +57,7 @@ export const useApi = () => {
 
     error.value = null
     findPokemon.value = null
+    const startedAt = Date.now()
     loading.value = true
 
     try {
@@ -63,6 +68,11 @@ export const useApi = () => {
     } catch (err) {
       error.value = 'Pokemon not found, try with another name.'
     } finally {
+      const elapsed = Date.now() - startedAt
+      const remaining = 3000 - elapsed
+      if (remaining > 0) {
+        await new Promise((resolve) => setTimeout(resolve, remaining))
+      }
       loading.value = false
     }
   }
