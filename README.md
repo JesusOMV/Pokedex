@@ -1,48 +1,62 @@
-# Pokedex
+# 📱 PokéDex | Jesús Martínez - Software Developer
 
-This template should help get you started developing with Vue 3 in Vite.
+Una aplicación web minimalista construida con **Vue 3** y **Tailwind CSS** que consume la [PokéAPI](https://pokeapi.co) para listar y buscar Pokémon de forma dinámica.
 
+![Vue 3](https://img.shields.io) ![JavaScript](https://img.shields.io) ![Tailwind CSS](https://img.shields.io) ![HTML5](https://img.shields.io) ![CSS3](https://img.shields.io) ![VS Code](https://img.shields.io) ![Netlify](https://img.shields.io)
 
+---
+
+## 🚀 Demo en vivo
+Puedes ver el proyecto funcionando aquí:  
+👉 **[jesus-mtz-pokedex.netlify.app](https://jesus-mtz-pokedex.netlify.app)**
+
+---
+
+## ✨ Funcionalidades principales
+*   **Pantalla de inicio personalizada:** Interfaz limpia y directa al grano.
+*   **Listado completo:** Carga y visualización de todos los Pokémon desde la API oficial.
+*   **Buscador dinámico:** Filtra tus Pokémon favoritos por nombre o número.
+*   **Gestión de errores:** Mensajes amigables cuando un Pokémon no es encontrado o la API no responde.
+
+>  [!IMPORTANT]
+> **Nota de visualización:** Este proyecto ha sido diseñado exclusivamente para resolución de **Computadora (Desktop)**. No cuenta con soporte para dispositivos móviles o tablets por el momento.
+
+---
+
+## 🛠️ Stack Tecnológico
+*   **Framework:** [Vue 3](https://vuejs.org) (Composition API)
+*   **Estilos:** [Tailwind CSS 3](https://tailwindcss.com)
+*   **Lenguaje:** JavaScript (ES6+)
+*   **Estructura:** HTML5 & CSS3
+*   **Despliegue:** Netlify
+
+## 🔧 Herramientas de Desarrollo
+*   **Editor:** Visual Studio Code
+*   **Control de versiones:** Git & GitHub
+*   **Entorno de ejecución:** Node.js
+
+---
+
+## 📸 Captura de pantalla
+
+![Vista previa de la Pokedex]
 <img width="1847" height="970" alt="imagen" src="https://github.com/user-attachments/assets/606aeb08-4749-4746-9b5b-e76efb3054d3" />
-<img width="1847" height="952" alt="imagen" src="https://github.com/user-attachments/assets/dac5a309-2794-4fc5-8199-0c7b4b797874" />
-<img width="1851" height="964" alt="imagen" src="https://github.com/user-attachments/assets/946c65b6-50a7-43cd-be8f-3489abb58e57" />
-<img width="1855" height="968" alt="imagen" src="https://github.com/user-attachments/assets/abbb8882-eacb-48ad-bb00-655630bb78f4" />
-<img width="1850" height="967" alt="imagen" src="https://github.com/user-attachments/assets/d8f6c56b-e523-41bc-8579-6f9cec3b7d5d" />
 
+---
 
+## ⚙️ Instalación Local
 
+Si deseas ejecutar este proyecto en tu entorno local, sigue estos pasos:
 
-## Recommended IDE Setup
+1. Clona el repositorio:
+   ```bash
+   git clone https://github.com/JesusOMV/Pokedex.git
+2. Entra al directorio
+   cd Pokedex
+3. Instala las dependencias
+   npm install
+4. Inicia el servidor de desarrollo
+   npm run dev
 
-[VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
-
-## Recommended Browser Setup
-
-- Chromium-based browsers (Chrome, Edge, Brave, etc.):
-  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
-  - [Turn on Custom Object Formatter in Chrome DevTools](http://bit.ly/object-formatters)
-- Firefox:
-  - [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
-  - [Turn on Custom Object Formatter in Firefox DevTools](https://fxdx.dev/firefox-devtools-custom-object-formatters/)
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vite.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Compile and Minify for Production
-
-```sh
-npm run build
-```
+Desarrollado por Jesús Martínez
+https://www.linkedin.com/in/jesusmartinezvelazquez-45b9b | Pokedex
