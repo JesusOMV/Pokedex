@@ -1,6 +1,6 @@
 # 📱 PokéDex | Jesús Martínez - Software Developer
 
-Una aplicación web minimalista construida con **Vue 3** y **Tailwind CSS** que consume la [PokéAPI](https://pokeapi.co) para listar y buscar Pokémon de forma dinámica.
+Una aplicación web minimalista construida con **Vue 3** y **Tailwind CSS** que consume la [PokéAPI](https://pokeapi.co) para listar y buscar Pokémon de forma dinámica. En la pantalla de busqueda, unos nombres de Pokemon que puede escribir son: Pikachu, Bulbasaur, Ivysaur, Charizard, Jigglypuff, Squirtle.
 
 ![Vue 3](https://img.shields.io/badge/Vue.js-35495E?style=for-the-badge&logo=vuedotjs&logoColor=4FC08D)
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E%3F%26logo%3Djavascript%26logoColor%3Dblack)
