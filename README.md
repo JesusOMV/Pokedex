@@ -1,6 +1,7 @@
-# 📱 PokéDex | Jesús Martínez - Software Developer
+# 📱 PokeDex | Jesus Martinez - Software Developer
 
-Una aplicación web minimalista construida con **Vue 3** y **Tailwind CSS** que consume la [PokéAPI](https://pokeapi.co) para listar y buscar Pokémon de forma dinámica. En la pantalla de busqueda, unos nombres de Pokemon que puede escribir son: Pikachu, Bulbasaur, Ivysaur, Charizard, Jigglypuff, Squirtle.
+A minimalist web application built with **Vue 3** and **Tailwind CSS** that consumes the [PokéAPI](https://pokeapi.co) to list and search Pokémon dynamically.  
+In the search screen, some Pokémon names you can try are: **Pikachu, Bulbasaur, Ivysaur, Charizard, Jigglypuff, Squirtle.**
 
 ![Vue 3](https://img.shields.io/badge/Vue.js-35495E?style=for-the-badge&logo=vuedotjs&logoColor=4FC08D)
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E%3F%26logo%3Djavascript%26logoColor%3Dblack)
@@ -12,57 +13,57 @@ Una aplicación web minimalista construida con **Vue 3** y **Tailwind CSS** que 
 
 ---
 
-## 🚀 Demo en vivo
-Puedes ver el proyecto funcionando aquí:  
+## 🚀 Live Demo
+You can see the project in action here:  
 👉 **[jesus-mtz-pokedex.netlify.app](https://jesus-mtz-pokedex.netlify.app)**
 
 ---
 
-## ✨ Funcionalidades principales
-*   **Pantalla de inicio personalizada:** Interfaz limpia y directa al grano.
-*   **Listado completo:** Carga y visualización de todos los Pokémon desde la API oficial.
-*   **Buscador dinámico:** Filtra tus Pokémon favoritos por nombre o número.
-*   **Gestión de errores:** Mensajes amigables cuando un Pokémon no es encontrado o la API no responde.
+## ✨ Key Features
+*   **Custom Home Screen:** Clean and straightforward user interface.
+*   **Full Listing:** Fetches and displays all Pokémon from the official API.
+*   **Dynamic Search:** Filter your favorite Pokémon by name or ID.
+*   **Error Handling:** User-friendly messages when a Pokémon is not found or if the API fails to respond.
 
->  [!IMPORTANT]
-> **Nota de visualización:** Este proyecto ha sido diseñado exclusivamente para resolución de **Computadora (Desktop)**. No cuenta con soporte para dispositivos móviles o tablets por el momento.
+> [!IMPORTANT]
+> **Display Note:** This project was designed exclusively for **Desktop** resolutions. It does not currently support mobile devices or tablets.
 
 ---
 
-## 🛠️ Stack Tecnológico
+## 🛠️ Tech Stack
 *   **Framework:** [Vue 3](https://vuejs.org) (Composition API)
-*   **Estilos:** [Tailwind CSS 3](https://tailwindcss.com)
-*   **Lenguaje:** JavaScript (ES6+)
-*   **Estructura:** HTML5 & CSS3
-*   **Despliegue:** Netlify
+*   **Styling:** [Tailwind CSS 3](https://tailwindcss.com)
+*   **Language:** JavaScript (ES6+)
+*   **Structure:** HTML5 & CSS3
+*   **Deployment:** Netlify
 
-## 🔧 Herramientas de Desarrollo
+## 🔧 Development Tools
 *   **Editor:** Visual Studio Code
-*   **Control de versiones:** Git & GitHub
-*   **Entorno de ejecución:** Node.js
+*   **Version Control:** Git & GitHub
+*   **Runtime Environment:** Node.js
 
 ---
 
-## 📸 Captura de pantalla
+## 📸 Screenshots
 
-![Vista previa de la Pokedex]
+![PokeDex Demo Screen]
 <img width="1847" height="970" alt="imagen" src="https://github.com/user-attachments/assets/606aeb08-4749-4746-9b5b-e76efb3054d3" />
 
 ---
 
-## ⚙️ Instalación Local
+## ⚙️ Local Installation
 
-Si deseas ejecutar este proyecto en tu entorno local, sigue estos pasos:
+To run this project in your local environment, follow these steps:
 
-1. Clona el repositorio:
+1. Clone the repository:
    ```bash
    git clone https://github.com/JesusOMV/Pokedex.git
-2. Entra al directorio
+2. Navigate to the directory:
    cd Pokedex
-3. Instala las dependencias
+3. Install dependencies:
    npm install
-4. Inicia el servidor de desarrollo
+4. Start the development server:
    npm run dev
 
-Desarrollado por Jesús Martínez
+Developed by Jesus Martinez
 https://www.linkedin.com/in/jesusmartinezvelazquez-45b9b | Pokedex
