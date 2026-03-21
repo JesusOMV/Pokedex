@@ -65,5 +65,5 @@ To run this project in your local environment, follow these steps:
 4. Start the development server:
    npm run dev
 
-Developed by Jesus Martinez
+Developed by Jesus Martinez  
 https://www.linkedin.com/in/jesusmartinezvelazquez-45b9b | Pokedex
