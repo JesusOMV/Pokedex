@@ -1,7 +1,8 @@
 # 📱 PokeDex | Jesus Martinez - Software Developer
 
-A minimalist web application built with **Vue 3** and **Tailwind CSS** that consumes the [PokéAPI](https://pokeapi.co) to list and search Pokémon dynamically.  
-In the search screen, some Pokémon names you can try are: **Pikachu, Bulbasaur, Ivysaur, Charizard, Jigglypuff, Squirtle.**
+A Vue 3 & Tailwind CSS web application that consumes the PokéAPI to search and display data in real-time. This project focuses on clean code, efficient API integration, and a seamless user experience.
+
+👉 In the search interface, try searching for: **Pikachu, Charizard, or Squirtle** to see the dynamic filtering in action.
 
 ![Vue 3](https://img.shields.io/badge/Vue.js-35495E?style=for-the-badge&logo=vuedotjs&logoColor=4FC08D)
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E%3F%26logo%3Djavascript%26logoColor%3Dblack)
@@ -14,23 +15,23 @@ In the search screen, some Pokémon names you can try are: **Pikachu, Bulbasaur,
 ---
 
 ## 🚀 Live Demo
+
 You can see the project in action here:  
 👉 **[jesus-mtz-pokedex.netlify.app](https://jesus-mtz-pokedex.netlify.app)**
 
 ---
 
-## ✨ Key Features
-*   **Custom Home Screen:** Clean and straightforward user interface.
-*   **Full Listing:** Fetches and displays all Pokémon from the official API.
-*   **Dynamic Search:** Filter your favorite Pokémon by name or ID.
-*   **Error Handling:** User-friendly messages when a Pokémon is not found or if the API fails to respond.
+## ✨ Key Features & Engineering
 
-> [!IMPORTANT]
-> **Display Note:** This project was designed exclusively for **Desktop** resolutions. It does not currently support mobile devices or tablets.
+* **Asynchronous Data Management:** Implemented efficient data fetching from the PokeAPI with proper handling of promises and async/await patterns.
+* **Real-time Client-side Filtering:** High-performance search engine that filters through the API's data by name or ID without reloading the page.
+* **Robust Error Management:** Integrated exception handling (Try/Catch) to manage API downtime and 404 responses, providing clear feedback to the user.
+* **State & UI Sync:** Seamless synchronization between the application state and the UI components for a fluid user experience.
 
 ---
 
 ## 🛠️ Tech Stack
+
 *   **Framework:** [Vue 3](https://vuejs.org) (Composition API)
 *   **Styling:** [Tailwind CSS 3](https://tailwindcss.com)
 *   **Language:** JavaScript (ES6+)
@@ -38,9 +39,20 @@ You can see the project in action here:
 *   **Deployment:** Netlify
 
 ## 🔧 Development Tools
+
 *   **Editor:** Visual Studio Code
 *   **Version Control:** Git & GitHub
 *   **Runtime Environment:** Node.js
+
+---
+
+## 🗺️ Future Roadmap (Fullstack Evolution)
+
+The next steps to evolve this project into a Fullstack application include:
+
+*   **User Authentication:** Implementing a **Node.js & Express** backend to handle secure user sign-up and login.
+*   **Data Persistence:** Integrating a database (such as **PostgreSQL** or **MongoDB**) to allow users to save and manage their personalized data.
+*   **Favorite Pokémon:** Creating a dedicated feature to let users "like" and store their favorite Pokémon, persisted in a private database.
 
 ---
 
@@ -55,15 +67,22 @@ You can see the project in action here:
 
 To run this project in your local environment, follow these steps:
 
-1. Clone the repository:
+1. **Clone the repository:**
    ```bash
    git clone https://github.com/JesusOMV/Pokedex.git
-2. Navigate to the directory:
+   ```
+2. **Navigate to the directory:**
+   ```bash
    cd Pokedex
-3. Install dependencies:
+   ```
+3. **Install dependencies:**
+   ```bash
    npm install
-4. Start the development server:
+   ```
+4. **Start the development server:**
+   ```bash
    npm run dev
+   ```
 
 Developed by Jesus Martinez  
 https://www.linkedin.com/in/jesusmartinezvelazquez-45b9b | Pokedex
