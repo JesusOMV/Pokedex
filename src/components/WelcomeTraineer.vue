@@ -1,4 +1,4 @@
-<!-- This is the Welcome Traineer Component -->
+<!-- This is the Welcome Traineer Component. -->
 <template>
   <div class="bg-gradient-to-b from-poke-red to-poke-red-dark min-h-screen">
     <div class="text-center py-10 px-5">
