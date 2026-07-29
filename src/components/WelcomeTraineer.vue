@@ -5,7 +5,7 @@
       <Transition name="fade-down" appear>
         <img
           v-if="startAnimations"
-          src="/pokemon-logo.svg"
+          :src="pokemonLogo"
           alt="Pokemon Logo"
           class="w-[300px] h-auto block mx-auto drop-shadow-[0_5px_10px_rgba(0,0,0,0.3)]"
         />
@@ -28,7 +28,7 @@
       <Transition name="slide-oak" appear>
         <img
           v-if="startAnimations"
-          src="/ProfessorOak.svg"
+          :src="professorOak"
           class="flex-shrink-0 h-[280px] w-auto"
           alt="Professor Oak"
         />
@@ -64,6 +64,8 @@
 
 <script setup>
 import { ref, onMounted } from 'vue'
+import pokemonLogo from '../assets/pokemon-logo.png'
+import professorOak from '../assets/ProfessorOak.png'
 
 const fullText =
   "Hello there, I'm Professor Oak. Ready to know more about Pokemons?"
